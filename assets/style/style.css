@@ -7,7 +7,7 @@ body {
     text-align: center;
 }
 
-/* --------- Heading */
+/*  --------- Heading */
 
 .heading {
     text-align: center;
@@ -184,8 +184,11 @@ body {
     }
 
     .btn--big::after {
-        font-size: 0.6rem;
-        left: -0.7rem;
+        content: attr(data-type);
+        font-size: 1rem;
+        left: -0.5rem;
+        color: #445361;
+        position: relative;
     }
 
     .question-area {

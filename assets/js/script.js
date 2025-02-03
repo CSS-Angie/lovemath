@@ -27,10 +27,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivideQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubstractQuestion(num1, num2);
     } else {
-        alert (`Unkown game type; ${gameType}`);
-        throw `Unknown game type: {gameType}. Aborting.`;
-    }
+    alert (`Unkown game type; ${gameType}`);
+    throw `Unknown game type: {gameType}. Aborting.`;
+}
     }
    
 /**
@@ -59,6 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let operator = document.getElementById("operator").innerText;
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
+    } else if (operator === "*") {
+        return [operand1 * operand2, "multiply"];
     } else {
         alert(`unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}`;
@@ -69,14 +81,12 @@ document.addEventListener("DOMContentLoaded", function() {
      */
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("score").innerText);
-
     document.getElementById("score").textContent = oldScore + 1;
 }
 
-
+// gets score from the incorrect score and increments it by one
 function incrementWrongAnswer() {
     let oldScore2 = parseInt(document.getElementById("incorrect").innerText);
-
     document.getElementById("incorrect").textContent = oldScore2 + 1;
 }
 
@@ -86,11 +96,23 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operator').textContent = "+";
 }
 
-function displaySubstractQuestion()
+function displaySubstractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "-";
+}
 
-function displayMultiplyQuestion()
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "*";
+}
 
-function displayDivideQuestion()
+function displayDivideQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
+}
 
 
 

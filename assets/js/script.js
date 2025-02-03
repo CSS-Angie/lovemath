@@ -22,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 
     function runGame (gameType) {
-
-
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
 
@@ -31,11 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
         displayAdditionQuestion(num1, num2);
     } else {
         alert (`Unkown game type; ${gameType}`);
-        throw `Unknown game type: {gameType}. Aborting.`
+        throw `Unknown game type: {gameType}. Aborting.`;
     }
-
     }
-
    
 /**
  * Checks answer against first element in the 
@@ -48,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
         let isCorrect = userAnswer === calculatedAnswer[0];
 
         if (isCorrect) {
-            alert ("Hey! You got it right! :D")
+            alert ("Hey! You got it right! :D");
+            incrementScore();
         } else {
             alert(`Awwww .... you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}.`);
+            incrementWrongAnswer();
         }
-
         runGame(calculatedAnswer[1]);
     }
-    
     
     function calculateCorrectAnswer() {
     let operand1 = parseInt(document.getElementById("operand1").innerText);
@@ -64,14 +60,25 @@ document.addEventListener("DOMContentLoaded", function() {
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else {
-        alert(`unimplemented operator ${operator}`)
+        alert(`unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}`;
     }
 }
-    
-function incrementScore()
-    
-function incrementWrongAnswer()
+    /**
+     * Get the current score from the DOM and increments it by one
+     */
+function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+
+    document.getElementById("score").textContent = oldScore + 1;
+}
+
+
+function incrementWrongAnswer() {
+    let oldScore2 = parseInt(document.getElementById("incorrect").innerText);
+
+    document.getElementById("incorrect").textContent = oldScore2 + 1;
+}
 
 function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
@@ -79,10 +86,12 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operator').textContent = "+";
 }
 
-
 function displaySubstractQuestion()
 
 function displayMultiplyQuestion()
 
 function displayDivideQuestion()
+
+
+
 
